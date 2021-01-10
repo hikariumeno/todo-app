@@ -1,9 +1,9 @@
 import React from "react";
 
-import { MenuTabs } from "../../src/todo-app/Tabs";
+import { MenuTabs } from "../../src/todo-app/MenuTabs";
 
 export default {
-  title: "TodoApp/Tabs",
+  title: "TodoApp/MenuTabs",
   component: MenuTabs,
 };
 
