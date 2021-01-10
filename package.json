@@ -25,7 +25,8 @@
     "@storybook/addon-essentials": "6.0.28",
     "@storybook/addon-links": "6.0.28",
     "@storybook/react": "6.0.28",
-    "babel-loader": "^8.2.2"
+    "babel-loader": "^8.2.2",
+    "prettier": "2.2.1"
   },
   "dependencies": {}
 }
