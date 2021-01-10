@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Square from '../src/Square';
+import Square from "../src/Square";
 
 export default {
-  title: 'tic-tac-toe/Square',
-  component: Square
+  title: "tic-tac-toe/Square",
+  component: Square,
+  argTypes: { onClick: { action: "clicked" } },
 };
 
 const Template = (args) => <Square {...args} />;

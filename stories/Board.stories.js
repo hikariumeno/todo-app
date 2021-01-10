@@ -5,6 +5,7 @@ import Board from "../src/Board";
 export default {
   title: "tic-tac-toe/Board",
   component: Board,
+  argTypes: { onClick: { action: "clicked" } },
 };
 
 const Template = (args) => <Board {...args} />;
