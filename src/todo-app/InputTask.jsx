@@ -4,14 +4,16 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const InputText = () => (
+export const InputTask = () => (
   <Form>
     <Form.Row>
       <Col>
         <Form.Control type="text" placeholder="add details" />
       </Col>
       <Col>
-        <Button variant="primary">Add</Button>
+        <Button variant="primary" type="button">
+          Add
+        </Button>
       </Col>
     </Form.Row>
   </Form>
