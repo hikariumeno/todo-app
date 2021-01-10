@@ -1,18 +1,17 @@
 import { check } from "prettier";
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { MenuTabs } from "./Tabs";
+import Container from 'react-bootstrap/Container';
 
 export const Page = () => (
-  <article>
+  <Container>
     <h1>#todo</h1>
-    <ul>
-        <li>All</li>
-        <li>Active</li>
-        <li>Completed</li>
-    </ul>
+    <MenuTabs></MenuTabs>
     <form>
         <input type="text" placeholder="add details"></input>
-        <button>Add</button>
+        <button type="button">Add</button>
     </form>
-    <label for="check"><input type="checkbox" id="check"></input>Do coding Challenges</label>
-  </article>
+    <label htmlFor="check"><input type="checkbox" id="check"></input>Do coding Challenges</label>
+  </Container>
 );
