@@ -1,6 +1,6 @@
 import React from "react";
 
-import Board from "../src/Board";
+import Board from "../../src/tic-tac-toe/Board";
 
 export default {
   title: "tic-tac-toe/Board",
