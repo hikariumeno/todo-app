@@ -10,3 +10,6 @@ export default {
 const Template = (args) => <Checkbox {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  label: "test",
+};
