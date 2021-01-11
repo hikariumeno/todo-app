@@ -4,21 +4,28 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const InputTask = (props) => (
-  <Form>
-    <Form.Row>
-      <Col>
-        <Form.Control
-          type="text"
-          placeholder="add details"
-          value={props.value}
-        />
-      </Col>
-      <Col>
-        <Button variant="primary" type="button">
-          Add
-        </Button>
-      </Col>
-    </Form.Row>
-  </Form>
-);
+export class InputTask extends React.Component {
+  render() {
+    return (
+      <>
+        <Form onSubmit={this.props.onSubmit}>
+          <Form.Row>
+            <Col>
+              <Form.Control
+                type="text"
+                placeholder="add details"
+                value={this.props.value}
+                onChange={this.props.onChange}
+              />
+            </Col>
+            <Col>
+              <Button variant="primary" type="submit">
+                Add
+              </Button>
+            </Col>
+          </Form.Row>
+        </Form>
+      </>
+    );
+  }
+}

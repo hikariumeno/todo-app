@@ -10,25 +10,44 @@ export class AddCheckbox extends React.Component {
     this.state = {
       tasks: [
         {
-          task: "こんにちは",
-        },
-        {
-          task: "こんばんわ",
+          task: "",
         },
       ],
+      value: "",
+      content: "",
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      content: this.state.value,
+      value: "",
+    });
+    console.log(this.state.content);
   }
 
   renderCheckbox(i) {
+    this.setState();
     return <Checkbox label={this.state.tasks[i].task} />;
   }
 
   render() {
     return (
       <Container>
-        <InputTask></InputTask>
+        <InputTask
+          value={this.state.value}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        ></InputTask>
         {this.renderCheckbox(0)}
-        {this.renderCheckbox(1)}
+        {/* {this.renderCheckbox(1)} */}
       </Container>
     );
   }
