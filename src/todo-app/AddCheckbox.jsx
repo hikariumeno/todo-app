@@ -17,25 +17,23 @@ export class AddCheckbox extends React.Component {
       content: "",
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleClick(event) {
     event.preventDefault();
     this.setState({
-      content: this.state.value,
       value: "",
+      content: this.state.value,
     });
-    console.log(this.state.content);
   }
 
-  renderCheckbox(i) {
-    this.setState();
-    return <Checkbox label={this.state.tasks[i].task} />;
+  renderCheckbox() {
+    return <Checkbox label={this.state.content} />;
   }
 
   render() {
@@ -44,10 +42,9 @@ export class AddCheckbox extends React.Component {
         <InputTask
           value={this.state.value}
           onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
+          onClick={this.handleClick}
         ></InputTask>
-        {this.renderCheckbox(0)}
-        {/* {this.renderCheckbox(1)} */}
+        {this.renderCheckbox()}
       </Container>
     );
   }

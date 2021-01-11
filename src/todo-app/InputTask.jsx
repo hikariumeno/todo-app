@@ -8,7 +8,7 @@ export class InputTask extends React.Component {
   render() {
     return (
       <>
-        <Form onSubmit={this.props.onSubmit}>
+        <Form>
           <Form.Row>
             <Col>
               <Form.Control
@@ -19,7 +19,11 @@ export class InputTask extends React.Component {
               />
             </Col>
             <Col>
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="button"
+                onClick={this.props.onClick}
+              >
                 Add
               </Button>
             </Col>

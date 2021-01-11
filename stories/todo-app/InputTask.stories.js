@@ -5,10 +5,7 @@ import { InputTask } from "../../src/todo-app/InputTask";
 export default {
   title: "TodoApp/InputTask",
   component: InputTask,
-  argTypes: {
-    onChange: { aciton: "chenged" },
-    onSubmit: { action: "submited" },
-  },
+  argTypes: { onClick: { aciton: "clicked" } },
 };
 
 const Template = (args) => <InputTask {...args} />;
