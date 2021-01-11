@@ -36,13 +36,11 @@ export class AddCheckbox extends React.Component {
 
   render() {
     const tasks = this.state.tasks;
-    const taskList = tasks.map((value, task) => {
-      return (
-        <li key={task}>
-          <Checkbox label={tasks[task].task} />
-        </li>
-      );
-    });
+    const taskList = tasks.map(({ task }, i) => (
+      <li key={task + i}>
+        <Checkbox label={task} />
+      </li>
+    ));
 
     return (
       <Container>
