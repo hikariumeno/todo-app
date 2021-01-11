@@ -8,13 +8,9 @@ export class AddCheckbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [
-        {
-          task: "",
-        },
-      ],
+      tasks: [],
       value: "",
-      content: "",
+      taskNumber: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -26,17 +22,28 @@ export class AddCheckbox extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
+    const tasks = this.state.tasks.slice(0, this.state.taskNumber + 1);
     this.setState({
       value: "",
-      content: this.state.value,
+      tasks: tasks.concat([
+        {
+          task: this.state.value,
+        },
+      ]),
+      taskNumber: tasks.length,
     });
   }
 
-  renderCheckbox() {
-    return <Checkbox label={this.state.content} />;
-  }
-
   render() {
+    const tasks = this.state.tasks;
+    const taskList = tasks.map((value, task) => {
+      return (
+        <li key={task}>
+          <Checkbox label={tasks[task].task} />
+        </li>
+      );
+    });
+
     return (
       <Container>
         <InputTask
@@ -44,7 +51,7 @@ export class AddCheckbox extends React.Component {
           onChange={this.handleChange}
           onClick={this.handleClick}
         ></InputTask>
-        {this.renderCheckbox()}
+        <ol className="list-unstyled">{taskList}</ol>
       </Container>
     );
   }
