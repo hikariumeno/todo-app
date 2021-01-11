@@ -10,7 +10,14 @@ export default {
 
 const Template = (args) => <Checkbox {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const False = Template.bind({});
+False.args = {
   label: "test",
+  checked: false,
+};
+
+export const True = Template.bind({});
+True.args = {
+  label: "test",
+  checked: true,
 };
