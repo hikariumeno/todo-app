@@ -1,6 +1,6 @@
 import React from "react";
 
-import Game from "../src/Game";
+import Game from "../../src/tic-tac-toe/Game";
 
 export default {
   title: "tic-tac-toe/Game",

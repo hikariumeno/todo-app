@@ -1,6 +1,6 @@
 import React from "react";
 
-import Square from "../src/Square";
+import Square from "../../src/tic-tac-toe/Square";
 
 export default {
   title: "tic-tac-toe/Square",
