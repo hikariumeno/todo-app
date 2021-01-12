@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -17,7 +18,7 @@ export class InputTask extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Row>
+        <Row>
           <Col>
             <Form.Control
               type="text"
@@ -35,7 +36,7 @@ export class InputTask extends React.Component {
               Add
             </Button>
           </Col>
-        </Form.Row>
+        </Row>
       </Form>
     );
   }

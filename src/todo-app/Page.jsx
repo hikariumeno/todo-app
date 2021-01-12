@@ -51,6 +51,9 @@ export class Page extends React.Component {
 
   render() {
     const tasks = this.state.tasks;
+    const activeTasks = tasks.filter((task) => task.checked == false);
+    const completedTasks = tasks.filter((task) => task.checked == true);
+
     const taskList = tasks.map(({ task }, i) => (
       <li key={task + i}>
         <Checkbox
@@ -61,15 +64,28 @@ export class Page extends React.Component {
         />
       </li>
     ));
-    // const activeTaskList = tasks.map(({ checked }, i) => (
-    //     <li key={task + i}>
-    //       <Checkbox
-    //         label={task}
-    //         checked={tasks[i].checked}
-    //         onChange={(event) => this.handleToggle(i, event)}
-    //       />
-    //     </li>
-    //   ));
+
+    const activeTaskList = activeTasks.map(({ task }, i) => (
+      <li key={task + i}>
+        <Checkbox
+          label={task}
+          checked={tasks[i].checked}
+          onChange={(event) => this.handleToggle(i, event)}
+          activeTab={this.state.activeTab}
+        />
+      </li>
+    ));
+
+    const completedTaskList = completedTasks.map(({ task }, i) => (
+      <li key={task + i}>
+        <Checkbox
+          label={task}
+          checked={tasks[i].checked}
+          onChange={(event) => this.handleToggle(i, event)}
+          activeTab={this.state.activeTab}
+        />
+      </li>
+    ));
 
     return (
       <Container>
@@ -83,7 +99,13 @@ export class Page extends React.Component {
           onChange={this.handleChange}
           onClick={this.handleClick}
         ></InputTask>
-        <ol className="list-unstyled">{taskList}</ol>
+        <ol className="list-unstyled">
+          {this.state.activeTab === "All"
+            ? taskList
+            : this.state.activeTab === "Active"
+            ? activeTaskList
+            : completedTaskList}
+        </ol>
       </Container>
     );
   }
