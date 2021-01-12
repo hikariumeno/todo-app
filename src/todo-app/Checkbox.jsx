@@ -14,7 +14,8 @@ export const Checkbox = (props) => {
       <Trash></Trash>
     </Button>
   );
-  const trashButton = props.activeTab === "Completed" ? button : null;
+  const trashButton =
+    props.activeTab === "Completed" && props.checked ? button : null;
 
   return (
     <ButtonToolbar

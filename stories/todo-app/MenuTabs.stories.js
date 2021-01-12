@@ -11,3 +11,6 @@ export default {
 const Template = (args) => <MenuTabs {...args} />;
 
 export const Default = Template.bind({});
+Default.args = {
+  activeKey: "All",
+};

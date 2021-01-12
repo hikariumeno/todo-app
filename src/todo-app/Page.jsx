@@ -12,10 +12,12 @@ export class Page extends React.Component {
       tasks: [],
       value: "",
       taskNumber: 0,
+      activeTab: "All",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleChange(event) {
@@ -43,6 +45,10 @@ export class Page extends React.Component {
     this.setState({ tasks: tasks });
   }
 
+  handleSelect(event) {
+    this.setState({ activeTab: event });
+  }
+
   render() {
     const tasks = this.state.tasks;
     const taskList = tasks.map(({ task }, i) => (
@@ -51,6 +57,7 @@ export class Page extends React.Component {
           label={task}
           checked={tasks[i].checked}
           onChange={(event) => this.handleToggle(i, event)}
+          activeTab={this.state.activeTab}
         />
       </li>
     ));
@@ -67,7 +74,10 @@ export class Page extends React.Component {
     return (
       <Container>
         <h1>#todo</h1>
-        <MenuTabs></MenuTabs>
+        <MenuTabs
+          activeKey={this.state.activeTab}
+          onSelect={this.handleSelect}
+        ></MenuTabs>
         <InputTask
           value={this.state.value}
           onChange={this.handleChange}
