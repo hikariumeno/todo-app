@@ -54,6 +54,15 @@ export class Page extends React.Component {
         />
       </li>
     ));
+    // const activeTaskList = tasks.map(({ checked }, i) => (
+    //     <li key={task + i}>
+    //       <Checkbox
+    //         label={task}
+    //         checked={tasks[i].checked}
+    //         onChange={(event) => this.handleToggle(i, event)}
+    //       />
+    //     </li>
+    //   ));
 
     return (
       <Container>
