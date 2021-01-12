@@ -26,6 +26,9 @@ export class Page extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
+    if (this.state.value === "") {
+      return;
+    }
     const tasks = this.state.tasks.slice(0, this.state.taskNumber + 1);
     this.setState({
       value: "",
@@ -54,38 +57,17 @@ export class Page extends React.Component {
     const activeTasks = tasks.filter((task) => task.checked == false);
     const completedTasks = tasks.filter((task) => task.checked == true);
 
-    const taskList = tasks.map(({ task }, i) => (
-      <li key={task + i}>
-        <Checkbox
-          label={task}
-          checked={tasks[i].checked}
-          onChange={(event) => this.handleToggle(i, event)}
-          activeTab={this.state.activeTab}
-        />
-      </li>
-    ));
-
-    const activeTaskList = activeTasks.map(({ task }, i) => (
-      <li key={task + i}>
-        <Checkbox
-          label={task}
-          checked={tasks[i].checked}
-          onChange={(event) => this.handleToggle(i, event)}
-          activeTab={this.state.activeTab}
-        />
-      </li>
-    ));
-
-    const completedTaskList = completedTasks.map(({ task }, i) => (
-      <li key={task + i}>
-        <Checkbox
-          label={task}
-          checked={tasks[i].checked}
-          onChange={(event) => this.handleToggle(i, event)}
-          activeTab={this.state.activeTab}
-        />
-      </li>
-    ));
+    const taskList = (tasks) =>
+      tasks.map((task, i) => (
+        <li key={task + i}>
+          <Checkbox
+            label={task.task}
+            checked={task.checked}
+            onChange={(event) => this.handleToggle(i, event)}
+            activeTab={this.state.activeTab}
+          />
+        </li>
+      ));
 
     return (
       <Container>
@@ -101,10 +83,10 @@ export class Page extends React.Component {
         ></InputTask>
         <ol className="list-unstyled">
           {this.state.activeTab === "All"
-            ? taskList
+            ? taskList(tasks)
             : this.state.activeTab === "Active"
-            ? activeTaskList
-            : completedTaskList}
+            ? taskList(activeTasks)
+            : taskList(completedTasks)}
         </ol>
       </Container>
     );
