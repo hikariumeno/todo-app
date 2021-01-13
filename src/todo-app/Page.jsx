@@ -38,6 +38,7 @@ export class Page extends React.Component {
       value: "",
       tasks: tasks.concat([
         {
+          id: Math.random().toString(32).substring(2),
           task: this.state.value,
           checked: false,
         },
@@ -46,7 +47,7 @@ export class Page extends React.Component {
     });
   }
 
-  handleToggle(i, event) {
+  handleToggle(id, event) {
     const tasks = this.state.tasks.slice();
     tasks[i].checked = event.target.checked;
     this.setState({ tasks: tasks });
@@ -56,13 +57,12 @@ export class Page extends React.Component {
     this.setState({ activeTab: event });
   }
 
-  handleDeleteOne(i, event) {
+  handleDeleteOne(id, event) {
     event.preventDefault();
-    const tasks = this.state.tasks.splice(i, 1);
+    const tasks = this.state.tasks.filter((task) => task.id !== id);
     this.setState({
       tasks: tasks,
     });
-    console.log(i, tasks);
   }
 
   handleDeleteAll(event) {
@@ -84,15 +84,13 @@ export class Page extends React.Component {
           <Checkbox
             label={task.task}
             checked={task.checked}
+            id={task.id}
             onChange={(event) => this.handleToggle(i, event)}
             activeTab={this.state.activeTab}
-            onClick={(event) => this.handleDeleteOne(i, event)}
-            id={i}
+            onClick={(event) => this.handleDeleteOne(task.id, event)}
           />
         </li>
       ));
-
-    console.log(this.state.tasks);
 
     const deleteButton =
       this.state.activeTab === "Completed" ? (

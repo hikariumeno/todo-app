@@ -11,23 +11,14 @@ export const Checkbox = (props) => {
 
   const trashButton =
     props.activeTab === "Completed" && props.checked ? (
-      <Button
-        variant="link"
-        type="button"
-        size="sm"
-        onClick={props.onClick}
-        id={props.id}
-      >
+      <Button variant="link" type="button" size="sm" onClick={props.onClick}>
         <Trash></Trash>
       </Button>
     ) : null;
 
   return (
-    <ButtonToolbar
-      className="justify-content-between"
-      aria-label="Toolbar with Button groups"
-    >
-      <Form.Check type="checkbox">
+    <ButtonToolbar className="justify-content-between">
+      <Form.Check type="checkbox" id={props.id}>
         <Form.Check.Input
           type="checkbox"
           checked={props.checked}

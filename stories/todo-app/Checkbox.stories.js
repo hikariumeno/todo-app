@@ -18,7 +18,6 @@ False.args = {
   label: "test",
   checked: false,
   activeTab: "All",
-  id: 0,
 };
 
 export const True = Template.bind({});
@@ -26,7 +25,6 @@ True.args = {
   label: "test",
   checked: true,
   activeTab: "All",
-  id: 0,
 };
 
 export const Completed = Template.bind({});
@@ -34,5 +32,4 @@ Completed.args = {
   label: "test",
   checked: true,
   activeTab: "Completed",
-  id: 0,
 };
