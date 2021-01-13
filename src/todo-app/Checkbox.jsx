@@ -9,13 +9,12 @@ export const Checkbox = (props) => {
   const label = props.label;
   const delLabel = <del>{props.label}</del>;
 
-  const button = (
-    <Button variant="link" type="button" size="sm" onClick={props.onClick}>
-      <Trash></Trash>
-    </Button>
-  );
   const trashButton =
-    props.activeTab === "Completed" && props.checked ? button : null;
+    props.activeTab === "Completed" && props.checked ? (
+      <Button variant="link" type="button" size="sm" onClick={props.onClick}>
+        <Trash></Trash>
+      </Button>
+    ) : null;
 
   return (
     <ButtonToolbar
