@@ -12,10 +12,12 @@ export class Page extends React.Component {
       tasks: [],
       value: "",
       taskNumber: 0,
+      activeTab: "All",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleChange(event) {
@@ -24,6 +26,9 @@ export class Page extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
+    if (this.state.value === "") {
+      return;
+    }
     const tasks = this.state.tasks.slice(0, this.state.taskNumber + 1);
     this.setState({
       value: "",
@@ -43,28 +48,46 @@ export class Page extends React.Component {
     this.setState({ tasks: tasks });
   }
 
+  handleSelect(event) {
+    this.setState({ activeTab: event });
+  }
+
   render() {
     const tasks = this.state.tasks;
-    const taskList = tasks.map(({ task }, i) => (
-      <li key={task + i}>
-        <Checkbox
-          label={task}
-          checked={tasks[i].checked}
-          onChange={(event) => this.handleToggle(i, event)}
-        />
-      </li>
-    ));
+    const activeTasks = tasks.filter((task) => task.checked == false);
+    const completedTasks = tasks.filter((task) => task.checked == true);
+
+    const taskList = (tasks) =>
+      tasks.map((task, i) => (
+        <li key={task + i}>
+          <Checkbox
+            label={task.task}
+            checked={task.checked}
+            onChange={(event) => this.handleToggle(i, event)}
+            activeTab={this.state.activeTab}
+          />
+        </li>
+      ));
 
     return (
       <Container>
         <h1>#todo</h1>
-        <MenuTabs></MenuTabs>
+        <MenuTabs
+          activeKey={this.state.activeTab}
+          onSelect={this.handleSelect}
+        ></MenuTabs>
         <InputTask
           value={this.state.value}
           onChange={this.handleChange}
           onClick={this.handleClick}
         ></InputTask>
-        <ol className="list-unstyled">{taskList}</ol>
+        <ol className="list-unstyled">
+          {this.state.activeTab === "All"
+            ? taskList(tasks)
+            : this.state.activeTab === "Active"
+            ? taskList(activeTasks)
+            : taskList(completedTasks)}
+        </ol>
       </Container>
     );
   }
