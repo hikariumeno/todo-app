@@ -1,6 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import { Trash } from "react-bootstrap-icons";
 import { MenuTabs } from "./MenuTabs";
 import { InputTask } from "./InputTask";
 import { Checkbox } from "./Checkbox";
@@ -18,6 +20,8 @@ export class Page extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleDeleteOne = this.handleDeleteOne.bind(this);
+    this.handleDeleteAll = this.handleDeleteAll.bind(this);
   }
 
   handleChange(event) {
@@ -52,6 +56,22 @@ export class Page extends React.Component {
     this.setState({ activeTab: event });
   }
 
+  handleDeleteOne(event) {
+    event.preventDefault();
+    const tasks = this.state.tasks.splice(event.target.id, 1);
+    this.setState({
+      tasks: tasks,
+    });
+  }
+
+  handleDeleteAll(event) {
+    event.preventDefault();
+    const tasks = this.state.tasks.filter((task) => task.checked == false);
+    this.setState({
+      tasks: tasks,
+    });
+  }
+
   render() {
     const tasks = this.state.tasks;
     const activeTasks = tasks.filter((task) => task.checked == false);
@@ -65,9 +85,23 @@ export class Page extends React.Component {
             checked={task.checked}
             onChange={(event) => this.handleToggle(i, event)}
             activeTab={this.state.activeTab}
+            onClick={(event) => this.handleDeleteOne(event)}
+            id={i}
           />
         </li>
       ));
+
+    const deleteButton =
+      this.state.activeTab === "Completed" ? (
+        <Button
+          className="float-right"
+          variant="danger"
+          type="button"
+          onClick={this.handleDeleteAll}
+        >
+          <Trash></Trash> delete all
+        </Button>
+      ) : null;
 
     return (
       <Container>
@@ -88,6 +122,7 @@ export class Page extends React.Component {
             ? taskList(activeTasks)
             : taskList(completedTasks)}
         </ol>
+        {deleteButton}
       </Container>
     );
   }

@@ -11,7 +11,13 @@ export const Checkbox = (props) => {
 
   const trashButton =
     props.activeTab === "Completed" && props.checked ? (
-      <Button variant="link" type="button" size="sm" onClick={props.onClick}>
+      <Button
+        variant="link"
+        type="button"
+        size="sm"
+        onClick={props.onClick}
+        id={props.id}
+      >
         <Trash></Trash>
       </Button>
     ) : null;
