@@ -47,7 +47,7 @@ export class Page extends React.Component {
     });
   }
 
-  handleToggle(id, event) {
+  handleToggle(i, event) {
     const tasks = this.state.tasks.slice();
     tasks[i].checked = event.target.checked;
     this.setState({ tasks: tasks });
