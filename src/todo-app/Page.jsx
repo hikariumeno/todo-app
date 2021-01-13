@@ -56,12 +56,13 @@ export class Page extends React.Component {
     this.setState({ activeTab: event });
   }
 
-  handleDeleteOne(event) {
+  handleDeleteOne(i, event) {
     event.preventDefault();
-    const tasks = this.state.tasks.splice(event.target.id, 1);
+    const tasks = this.state.tasks.splice(i, 1);
     this.setState({
       tasks: tasks,
     });
+    console.log(i, tasks);
   }
 
   handleDeleteAll(event) {
@@ -85,11 +86,13 @@ export class Page extends React.Component {
             checked={task.checked}
             onChange={(event) => this.handleToggle(i, event)}
             activeTab={this.state.activeTab}
-            onClick={(event) => this.handleDeleteOne(event)}
+            onClick={(event) => this.handleDeleteOne(i, event)}
             id={i}
           />
         </li>
       ));
+
+    console.log(this.state.tasks);
 
     const deleteButton =
       this.state.activeTab === "Completed" ? (
@@ -110,11 +113,13 @@ export class Page extends React.Component {
           activeKey={this.state.activeTab}
           onSelect={this.handleSelect}
         ></MenuTabs>
+        <br></br>
         <InputTask
           value={this.state.value}
           onChange={this.handleChange}
           onClick={this.handleClick}
         ></InputTask>
+        <br></br>
         <ol className="list-unstyled">
           {this.state.activeTab === "All"
             ? taskList(tasks)
