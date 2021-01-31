@@ -1,0 +1,9 @@
+version: "3"
+services:
+  app:
+    image: node:alpine
+    ports:
+      - 8081:8080
+    volumes:
+      - ./:/src
+    working_dir: /src
