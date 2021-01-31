@@ -17,11 +17,8 @@ export const Checkbox = (props) => {
     ) : null;
 
   return (
-    <ButtonToolbar
-      className="justify-content-between"
-      aria-label="Toolbar with Button groups"
-    >
-      <Form.Check type="checkbox">
+    <ButtonToolbar className="justify-content-between">
+      <Form.Check type="checkbox" id={props.id}>
         <Form.Check.Input
           type="checkbox"
           checked={props.checked}

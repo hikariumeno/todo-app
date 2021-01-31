@@ -5,7 +5,10 @@ import { Checkbox } from "../../src/todo-app/Checkbox";
 export default {
   title: "TodoApp/Checkbox",
   component: Checkbox,
-  argTypes: { onChange: { aciton: "changed" } },
+  argTypes: {
+    onChange: { aciton: "changed" },
+    onClick: { aciton: "clicked" },
+  },
 };
 
 const Template = (args) => <Checkbox {...args} />;

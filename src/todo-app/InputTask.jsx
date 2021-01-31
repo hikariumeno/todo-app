@@ -1,43 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 
-export class InputTask extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Row>
-          <Col>
-            <Form.Control
-              type="text"
-              placeholder="add details"
-              value={this.props.value}
-              onChange={this.props.onChange}
-            />
-          </Col>
-          <Col>
-            <Button
-              variant="primary"
-              type="button"
-              onClick={this.props.onClick}
-            >
-              Add
-            </Button>
-          </Col>
-        </Row>
-      </Form>
-    );
-  }
-}
+export const InputTask = (props) => (
+  <InputGroup>
+    <FormControl
+      type="text"
+      placeholder="add details"
+      value={props.value}
+      onChange={props.onChange}
+    />
+    <Button variant="primary" type="button" onClick={props.onClick}>
+      Add
+    </Button>
+  </InputGroup>
+);
