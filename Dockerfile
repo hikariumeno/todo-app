@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-alpine AS builder
 
 WORKDIR '/app'
 
@@ -8,5 +8,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 8080
-CMD [ "npm", "start" ]
+RUN npx webpack
+
+FROM httpd:2.4-alpine
+
+COPY --from=builder /app/dist/ /usr/local/apache2/htdocs/
