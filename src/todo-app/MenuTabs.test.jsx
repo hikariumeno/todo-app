@@ -3,9 +3,10 @@ import renderer from "react-test-renderer";
 import { MenuTabs } from "./MenuTabs";
 
 test("All Tab selected", () => {
-  const component = renderer.create(
-    <MenuTabs activeKey="All" onSelect="Function"></MenuTabs>
+  const onSelect = jest.fn()
+  const tree = renderer.create(
+    <MenuTabs activeKey="All" onSelect={onSelect}></MenuTabs>
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(onSelect).not.toHaveBeenCalled();
+  expect(tree.toJSON()).toMatchSnapshot();
 });
